@@ -66,12 +66,12 @@
 
 <body>
     <div class="container">
-        <h1>Check if you have any chance of getting heart attack here! For Free!</h1>
+        <h1>Find Out Your Heart Health Risk 🫀 Take Our Free Test!</h1>
         <div class="row justify-content-center">
             <div class="col-md-10 form-container">
                 <form id="prediction-form" method="POST" action="/predict">
                     <div class="mb-3">
-                        <label for="HadAngina" class="form-label">Did you experience an angina before?</label>
+                        <label for="HadAngina" class="form-label">Did you experience any sudden squeezing, pressure, heaviness, tightness or pain in the chest before?</label>
                         <select class="form-select" id="HadAngina" name="HadAngina" required>
                             <option value="" disabled selected>Select</option>
                             <option value="Yes">Yes</option>
@@ -81,7 +81,7 @@
 
                     <!-- Age Category -->
                     <div class="mb-3">
-                        <label for="AgeCategory" class="form-label">Age Category</label>
+                        <label for="AgeCategory" class="form-label">What is your age?</label>
                         <select class="form-select" id="AgeCategory" name="AgeCategory" required>
                             <option value="" disabled selected>Select</option>
                             <option value="0">Age 18 to 24</option>
@@ -102,7 +102,7 @@
 
                     <!-- BMI -->
                     <div class="mb-3">
-                        <label for="BMI" class="form-label">BMI</label>
+                        <label for="BMI" class="form-label">What is your BMI?</label>
                         <input type="number" class="form-control" id="BMI" name="BMI" step="0.1" required>
                     </div>
 
@@ -121,14 +121,14 @@
 
                     <!-- PhysicalHealthDays -->
                     <div class="mb-3">
-                        <label for="PhysicalHealthDays" class="form-label">Physical Health Days</label>
+                        <label for="PhysicalHealthDays" class="form-label">How many days was your physical health good?</label>
                         <input type="number" class="form-control" id="PhysicalHealthDays" name="PhysicalHealthDays"
                             min="0" max="30" required>
                     </div>
 
                     <!-- MentalHealthDays -->
                     <div class="mb-3">
-                        <label for="MentalHealthDays" class="form-label">Mental Health Days</label>
+                        <label for="MentalHealthDays" class="form-label">How many days was your mental health good?</label>
                         <input type="number" class="form-control" id="MentalHealthDays" name="MentalHealthDays" min="0"
                             max="30" required>
                     </div>

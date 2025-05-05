@@ -68,9 +68,9 @@ def predict():
         prediction = model.predict(features)[0]
 
         # Map prediction to readable text
-        result = "No heart attack" if prediction == 0 else "Has heart attack"
+        result = "Good job! Your responses don't show signs of a heart attack 👍🏆" if prediction == 0 else "Your responses suggest you may be showing signs of a possible heart attack. It's not too late to follow up with a healthcare professional. 🏥❤️"
 
-        return render_template('index.html', prediction=result)
+        return render_template('result.html', prediction=result)
     except KeyError as e:
         return f"Missing or incorrect form field: {str(e)}", 400
     except Exception as e:
