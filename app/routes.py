@@ -23,9 +23,12 @@ def predict():
         PhysicalHealthDays = int(request.form['PhysicalHealthDays'])
         MentalHealthDays = int(request.form['MentalHealthDays'])
         SleepHours = int(request.form['SleepHours'])
-        BMI = float(request.form['BMI'])
         Sex = int(request.form['Sex'])
         GeneralHealth = int(request.form['GeneralHealth'])
+
+        Height = float(request.form['Height'])  # in cm
+        Weight = float(request.form['Weight'])  # in kg
+        BMI = round(Weight / ((Height / 100) ** 2), 1)
         
         defaultValue = 0
         RemovedTeeth = defaultValue # 1 if request.form['RemovedTeeth'] == 'Yes' else 0
@@ -65,12 +68,21 @@ def predict():
                               PneumoVaxEver, TetanusLast10Tdap, HighRiskLastYear, CovidPos]])
 
         # Predict using the loaded model
-        prediction = model.predict(features)[0]
+        predictionClass = model.predict(features)[0]
+        proba = model.predict_proba(features)[0][predictionClass]
 
-        # Map prediction to readable text
-        result = "Good job! Your responses don't show signs of a heart attack 👍🏆" if prediction == 0 else "Your responses suggest you may be showing signs of a possible heart attack. It's not too late to follow up with a healthcare professional. 🏥❤️"
-
-        return render_template('result.html', prediction=result)
+        return render_template('result.html', 
+                               prediction=predictionClass, 
+                               proba=int(round(proba * 100)), 
+                               Sex=Sex, 
+                               AgeCategory=AgeCategory, 
+                               PhysicalActivities=PhysicalActivities, 
+                               BMI=BMI, 
+                               GeneralHealth=GeneralHealth,
+                               )
+    # [1, 6, 0, 0, 1, 1, 1, 29.0, 1, 0]
+    except ValueError as e:
+        return f"Invalid input: {str(e)}", 400
     except KeyError as e:
         return f"Missing or incorrect form field: {str(e)}", 400
     except Exception as e:

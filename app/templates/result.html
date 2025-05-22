@@ -69,10 +69,181 @@
         <h1>What Your Heart Symptoms May Be Telling You</h1>
         <div class="row justify-content-center">
             <div class="col-md-10 form-container">
-                <div class="result-container mt-4 bg-light text-center" id="predictionContainer">
-                    <div id="resultContainer">
-                        <h5>Prediction Result:</h5>
-                        <p>{{ prediction }}</p>
+                <div class="result-container mt-4 bg-light text-center p-4 rounded shadow" id="predictionContainer">
+                    <h4 class="mb-4">Prediction Result</h4>
+                    <div class="mt-4">
+                        {% if prediction == 1 %}
+                        <span class="badge bg-danger fs-4 ms-2 p-2">High Risk</span>
+                        <div class="mt-3 fs-5">
+                            There is a <b>{{ proba }}%</b> chance that you may be showing signs of a possible heart
+                            attack.<br>
+                            It's not too late to follow up with a healthcare professional. 🏥❤️
+                        </div>
+                        <!-- Personalized Recommendations -->
+                        <div class="alert alert-warning mt-4 text-start">
+                            <h5 class="mb-2"><b>Personalized Lifestyle Recommendations</b></h5>
+                            <ul class="mb-1">
+                                {% if proba < 40 %} <li>Your risk is elevated, but not extreme. Consider making mild
+                                    lifestyle changes such as
+                                    increasing daily activity, eating more fruits and vegetables, and reducing salt and
+                                    sugar
+                                    intake.</li>
+                                    {% elif proba < 70 %} <li>Your risk is moderate. Adopt a heart-healthy diet,
+                                        exercise regularly, avoid smoking,
+                                        and monitor your blood pressure and cholesterol. Schedule a checkup with your
+                                        doctor
+                                        soon.</li>
+                                        {% else %}
+                                        <li>Your risk is high. Please seek medical attention as soon as possible. In
+                                            addition to
+                                            lifestyle changes, a healthcare professional can help you manage your risk
+                                            factors.</li>
+                                        {% endif %}
+                                        {% if Sex == 1 %}
+                                        <li>As a male, your risk increases after age 45. Regular cardiovascular
+                                            screening is
+                                            important.</li>
+                                        {% else %}
+                                        <li>As a female, be aware that heart attack symptoms can be subtler. Don't
+                                            ignore unusual
+                                            fatigue, nausea, or shortness of breath.</li>
+                                        {% endif %}
+                                        {% if AgeCategory|int >= 5 %}
+                                        <li>Since you are above 45, focus on regular checkups, blood pressure, and
+                                            cholesterol
+                                            monitoring.</li>
+                                        {% else %}
+                                        <li>Even at a younger age, start healthy habits early to protect your heart for
+                                            the
+                                            future.</li>
+                                        {% endif %}
+                                        {% if PhysicalActivities == 0 %}
+                                        <li>Increase your physical activity. Aim for at least 30 minutes of moderate
+                                            exercise most
+                                            days of the week.</li>
+                                        {% endif %}
+                                        {% if BMI|float >= 25 %}
+                                        <li>Consider a balanced diet and regular exercise to reach a healthier weight.
+                                        </li>
+                                        {% endif %}
+                                        {% if GeneralHealth == 0 or GeneralHealth == 1 %}
+                                        <li>Since you rated your health as poor or fair, consider regular medical
+                                            checkups and
+                                            discuss your concerns with your doctor.</li>
+                                        {% endif %}
+                                        <li>Manage stress and get enough sleep each night.</li>
+                                        <li>Always consult your doctor before making major lifestyle changes.</li>
+                            </ul>
+                        </div>
+                        {% else %}
+                        <span class="badge bg-success fs-4 ms-2 p-2">Low Risk</span>
+                        <div class="mt-3 fs-5">
+                            Good job! Based on your answers, we are <b>{{ proba }}%</b> sure that you do <b>not</b>
+                            show signs of a heart attack 👍🏆
+                            Keep maintaining a healthy lifestyle!
+                        </div>
+                        {% if proba < 60 %} <!-- Personalized Recommendations for Low Confidence -->
+                            <div class="alert alert-info mt-4 text-start">
+                                <h5 class="mb-2"><b>Tips to Improve Your Heart Health</b></h5>
+                                <ul class="mb-1">
+                                    <li>Even though your risk is low, the model is not highly confident. Consider
+                                        regular checkups with your doctor.</li>
+                                    {% if PhysicalActivities == 0 %}
+                                    <li>Increase your physical activity. Aim for at least 30 minutes of moderate
+                                        exercise most days of the week.</li>
+                                    {% endif %}
+                                    {% if BMI|float >= 25 %}
+                                    <li>Maintain a balanced diet and regular exercise to reach a healthier weight.</li>
+                                    {% endif %}
+                                    {% if GeneralHealth == 0 or GeneralHealth == 1 %}
+                                    <li>Since you rated your health as poor or fair, consider regular medical checkups
+                                        and discuss your concerns with your doctor.</li>
+                                    {% endif %}
+                                    <li>Eat more fruits and vegetables, and reduce salt and sugar intake.</li>
+                                    <li>Manage stress and get enough sleep each night.</li>
+                                </ul>
+                            </div>
+                            {% endif %}
+                            {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('home') }}" class="btn btn-outline-primary btn-lg">
+                Restart Test
+            </a>
+        </div>
+        <div class="alert alert-primary text-center mt-4">
+            <b>What’s Next?</b><br>
+            {% if prediction == 1 %}
+            Download your result, share it with your doctor, or <a href="https://www.heart.org/en/healthy-living"
+                target="_blank">learn more about heart health</a>.
+            {% else %}
+            Keep up your healthy habits! <a href="https://www.heart.org/en/healthy-living" target="_blank">See more
+                tips</a> or share your results with friends and family.
+            {% endif %}
+        </div>
+        <div class="alert alert-success text-center mt-4">
+            {% if prediction == 1 %}
+            Remember: Every positive change counts. You’ve already taken the first step by checking your risk. Stay
+            motivated and take care of your heart!
+            {% else %}
+            Fantastic! Your efforts are making a difference. Keep going and inspire others to care for their heart
+            health too!
+            {% endif %}
+        </div>
+        <!-- "Check Out How We Predict" Section -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-10 form-container">
+                <div class="bg-white p-4 rounded shadow">
+                    <h4 class="mb-3 text-center text-primary">Check Out How We Predict</h4>
+                    <p class="mb-3 text-center">
+                        Our prediction is powered by <b>XGBoost</b>, a modern machine learning model trusted by data
+                        scientists and doctors for its accuracy. Here’s how we use your answers:
+                    </p>
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item">
+                            <b>Model Confidence:</b> The percentage you see above shows how sure our model is about your
+                            result.
+                        </li>
+                        <li class="list-group-item">
+                            <b>Chest Pain Experience (Had Angina):</b> Whether you have ever felt chest pain, pressure,
+                            or tightness.
+                        </li>
+                        <li class="list-group-item">
+                            <b>Age Group:</b> Your age range, as heart risk increases with age.
+                        </li>
+                        <li class="list-group-item">
+                            <b>General Health:</b> How you rate your overall health.
+                        </li>
+                        <li class="list-group-item">
+                            <b>BMI (Body Mass Index):</b> A measure of your weight relative to your height.
+                        </li>
+                        <li class="list-group-item">
+                            <b>Physical Activity:</b> If you regularly do any physical activities or exercises.
+                        </li>
+                        <li class="list-group-item">
+                            <b>Physical Health Days:</b> Number of days in the past month you felt physically healthy.
+                        </li>
+                        <li class="list-group-item">
+                            <b>Mental Health Days:</b> Number of days in the past month you felt mentally healthy.
+                        </li>
+                        <li class="list-group-item">
+                            <b>Gender:</b> Whether you are male or female, as risk can differ.
+                        </li>
+                        <li class="list-group-item">
+                            <b>Sleep Hours:</b> Your average hours of sleep per night.
+                        </li>
+                        <li class="list-group-item">
+                            <b>Last Health Checkup:</b> How recently you visited a doctor for a checkup.
+                        </li>
+                    </ul>
+                    <div class="alert alert-info text-center mt-3">
+                        <b>Note:</b> This tool uses your answers and medical research to estimate your risk. It does not
+                        replace professional medical advice.<br>
+                        <b>Privacy:</b> We do <u>not</u> store any of your information. Your answers are only used for
+                        this prediction and are not saved.
                     </div>
                 </div>
             </div>
@@ -81,186 +252,6 @@
     <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const patientData = {
-            "Patient A": {
-                "2024-11-15": {
-                    age: 66,
-                    meno: 1,
-                    size: 25,
-                    grade: 2,
-                    nodes: 3,
-                    pgr: 15.4,
-                    er: 30.2,
-                    hormon: true,
-                    rfstime: 50
-                },
-                "2024-12-15": {
-                    age: 66,
-                    meno: 1,
-                    size: 30,
-                    grade: 2,
-                    nodes: 5,
-                    pgr: 20.1,
-                    er: 35.4,
-                    hormon: true,
-                    rfstime: 80
-                }
-            },
-            "Patient B": {
-                "2024-12-01": {
-                    age: 30,
-                    meno: 0,
-                    size: 18,
-                    grade: 1,
-                    nodes: 0,
-                    pgr: 10.5,
-                    er: 20.3,
-                    hormon: false,
-                    rfstime: 500
-                },
-                "2024-12-10": {
-                    age: 31,
-                    meno: 0,
-                    size: 20,
-                    grade: 2,
-                    nodes: 2,
-                    pgr: 12.7,
-                    er: 25.0,
-                    hormon: true,
-                    rfstime: 450
-                }
-            }
-        };
-
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     const nameField = document.getElementById('name');
-        //     const dateField = document.getElementById('date');
-        //     const predictionContainer = document.getElementById('predictionContainer');
-
-        //     const prefilledName = "{{ patient_name }}";
-        //     const prefilledDate = "{{ date }}";
-
-
-        //     Object.keys(patientData).forEach(patientName => {
-        //         const option = document.createElement('option');
-        //         option.value = patientName;
-        //         option.textContent = patientName;
-        //         option.selected = patientName === prefilledName;
-        //         nameField.appendChild(option);
-        //     });
-
-        //     if (prefilledName && patientData[prefilledName]) {
-        //         dateField.disabled = false;
-        //         Object.keys(patientData[prefilledName]).forEach(date => {
-        //             const option = document.createElement('option');
-        //             option.value = date;
-        //             option.textContent = date;
-        //             option.selected = date === prefilledDate;
-        //             dateField.appendChild(option);
-        //         });
-        //     }
-
-        //     if (prefilledName && prefilledDate && patientData[prefilledName] && patientData[prefilledName][prefilledDate]) {
-        //         const data = patientData[prefilledName][prefilledDate];
-
-        //         document.getElementById('age').value = data.age;
-        //         document.getElementById('meno').value = data.meno;
-        //         document.getElementById('size').value = data.size;
-        //         document.getElementById('grade').value = data.grade;
-        //         document.getElementById('nodes').value = data.nodes;
-        //         document.getElementById('pgr').value = data.pgr;
-        //         document.getElementById('er').value = data.er;
-        //         document.getElementById('hormon').checked = data.hormon;
-        //         document.getElementById('hormon-label').textContent = data.hormon ? 'Yes' : 'No';
-        //         document.getElementById('rfstime').value = data.rfstime;
-        //     }
-
-        //     nameField.addEventListener('change', function () {
-        //         if(predictionContainer) predictionContainer.style.display = 'none';
-
-        //         const selectedName = this.value;
-
-        //         // Reset and enable the date field
-        //         dateField.innerHTML = '<option value="" selected disabled>Select a date</option>';
-        //         dateField.disabled = !selectedName;
-
-        //         document.getElementById('age').value = '';
-        //         document.getElementById('meno').value = '';
-        //         document.getElementById('size').value = '';
-        //         document.getElementById('grade').value = '';
-        //         document.getElementById('nodes').value = '';
-        //         document.getElementById('pgr').value = '';
-        //         document.getElementById('er').value = '';
-        //         document.getElementById('hormon').checked = false;
-        //         document.getElementById('hormon-label').textContent = 'No';
-        //         document.getElementById('rfstime').value = '';
-
-        //         if (patientData[selectedName]) {
-        //             // Populate the date dropdown with available dates
-        //             Object.keys(patientData[selectedName]).forEach(date => {
-        //                 const option = document.createElement('option');
-        //                 option.value = date;
-        //                 option.textContent = date;
-        //                 dateField.appendChild(option);
-        //             });
-        //         }
-        //     });
-
-        //     // Event listener for date field
-        //     dateField.addEventListener('change', function () {
-        //         const selectedName = nameField.value;
-        //         const selectedDate = this.value;
-
-        //         if (patientData[selectedName] && patientData[selectedName][selectedDate]) {
-        //             const data = patientData[selectedName][selectedDate];
-
-        //             // Populate the form fields
-        //             document.getElementById('age').value = data.age;
-        //             document.getElementById('meno').value = data.meno;
-        //             document.getElementById('size').value = data.size;
-        //             document.getElementById('grade').value = data.grade;
-        //             document.getElementById('nodes').value = data.nodes;
-        //             document.getElementById('pgr').value = data.pgr;
-        //             document.getElementById('er').value = data.er;
-        //             document.getElementById('hormon').checked = data.hormon;
-        //             document.getElementById('hormon-label').textContent = data.hormon ? 'Yes' : 'No';
-        //             document.getElementById('rfstime').value = data.rfstime;
-
-        //             // Automatically submit the form
-        //             document.getElementById('prediction-form').submit();
-        //         }
-        //     });
-        // });
-
-        // const predictionResult = "{{ prediction }}";
-        // if (predictionResult) {
-        //     const resultContainer = document.getElementById("resultContainer");
-        //     const progressBar = document.getElementById("progressBar");
-        //     const startingValue = Math.random() * 10;
-        //     progressBar.style.width = `${startingValue}%`;
-
-        //     function fillProgressBar() {
-        //         var startingValue = 20;
-        //         var id = setInterval(frame, 8);
-        //         function frame() {
-        //             if (startingValue >= 100) {
-        //                 clearInterval(id);
-        //                 progressBar.style.display = 'none';
-        //                 resultContainer.style.display = 'block';
-        //             } else {
-        //                 startingValue++;
-        //                 progressBar.style.width = startingValue + '%';
-        //                 progressBar.innerHTML = startingValue * 1 + '%';
-        //             }
-        //         }
-        //     }
-
-        //     window.onload = () => {
-        //         resultContainer.style.display = 'none';
-        //         setTimeout(fillProgressBar, 500);
-        //     };
-        // }
-
     </script>
 </body>
 
