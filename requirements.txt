@@ -14,5 +14,4 @@ scipy==1.13.1
 threadpoolctl==3.5.0
 Werkzeug==2.0.3
 zipp==3.21.0
-gunicorn
 xgboost==3.0.0
