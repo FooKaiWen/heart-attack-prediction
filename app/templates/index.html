@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heart Disease Prediction</title>
+    <title>HeartWise AI</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
     <!-- Include Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -91,8 +93,9 @@
 
 <body>
     <div class="container">
-        <h1>Find Out Your Heart Health Risk 🫀 Take Our Free Test!</h1>
+        <h1>HeartWise AI 🫀</h1>
         <div class="row justify-content-center">
+            <h4 class="text-center mb-4">Find Out Your Heart Health Risk, Take Our Free Test!</h4>
             <div class="col-md-10 form-container">
                 <form id="prediction-form" method="POST" action="/predict">
                     <div class="mb-3">
@@ -150,7 +153,7 @@
                                         <path
                                             d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
                                         <path
-                                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466z" />
+                                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466.288 0 .352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .877-.252 1.02-.598l.088-.416c.073-.34.217-.466.465-.466z" />
                                         <circle cx="8" cy="4.5" r="1" />
                                     </svg>
                                 </span>
@@ -268,12 +271,9 @@
                                 style="bottom: 1rem; z-index: 3; pointer-events:auto; border-width:2px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                     class="bi bi-stars me-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M7.5 0l.866 2.5H11l-2 1.5.866 2.5L7.5 5.5 5.134 6.5 6 4l-2-1.5h2.634L7.5 0z" />
-                                    <path
-                                        d="M2.5 9l.433 1.25H4.5l-1 .75.433 1.25L2.5 11l-1.366.75L2 10l-1-.75h1.567L2.5 9z" />
-                                    <path
-                                        d="M13.5 9l.433 1.25H15.5l-1 .75.433 1.25L13.5 11l-1.366.75L13 10l-1-.75h1.567L13.5 9z" />
+                                    <path d="M7.5 0l.866 2.5H11l-2 1.5.866 2.5L7.5 5.5 5.134 6.5 6 4l-2-1.5h2.634L7.5 0z" />
+                                    <path d="M2.5 9l.433 1.25H4.5l-1 .75.433 1.25L2.5 11l-1.366.75L2 10l-1-.75h1.567L2.5 9z" />
+                                    <path d="M13.5 9l.433 1.25H15.5l-1 .75.433 1.25L13.5 11l-1.366.75L13 10l-1-.75h1.567L13.5 9z" />
                                 </svg>
                                 Unlock More Premium Questions
                             </button>
@@ -341,7 +341,31 @@
                 new bootstrap.Tooltip(tooltipTriggerEl);
             });
         });
+
+        // Show popup on premium button click
+        document.getElementById('showMorePremium').addEventListener('click', function () {
+            var modal = new bootstrap.Modal(document.getElementById('premiumModal'));
+            modal.show();
+        });
     </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="premiumModal" tabindex="-1" aria-labelledby="premiumModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    Thanks for your interest!<br>
+                    <b>Premium features will launch soon.</b>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
